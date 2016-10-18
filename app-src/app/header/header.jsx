@@ -7,7 +7,7 @@ import './header.scss';
 class Header extends React.Component{
     render(){
         return(
-            <Header>Header</Header>
+            <header>Header</header>
         )
     }
 }

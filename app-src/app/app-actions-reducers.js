@@ -48,7 +48,7 @@ export function getAppData(){
         dispatch( ajax.loading( type ) );
 
         Ajax({
-            url: '/starter/mock/json/app-home.json',//FEEDS.APP,
+            url: '/react-starter-kit/mock/json/app-home.json',//FEEDS.APP,
             type: 'GET',
             success: ( results ) => {
                 if( !results.success ){

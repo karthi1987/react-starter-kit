@@ -6,7 +6,7 @@ import './nav.scss';
 class Nav extends React.Component{
    render(){
         return(
-            <Nav>Navigation</Nav>
+            <nav>Navigation</nav>
         )
     }
 

@@ -42,7 +42,7 @@ function clientErrorHandler(err, req, res, next) {
 
 var app = express();
 
-app.use( '/starter', express.static( ROOT_PATH ) );
+app.use( '/react-starter-kit', express.static( ROOT_PATH ) );
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
