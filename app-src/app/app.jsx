@@ -31,19 +31,41 @@ let App = connectAndMap(
         getViewportSize,
     }
 )(
-    class extends React.Component{
+    class extends React.Component {
+
+        constructor(props){
+            super(props);
+            this.state = { 
+                products: [],
+                dataLoaded: false
+            };
+        }
+
         componentWillMount(){
             this.props.getViewportSize();
             this.props.getAppData();
         }
 
+
+        componentWillReceiveProps( nextProps ){
+         if ( nextProps.app && typeof nextProps.app.data != "undefined" && nextProps.app.data.length ) {
+            this.setState({"products": nextProps.app.data, "dataLoaded": true});
+         }
+        }
+
         render(){
+
+        let{
+            app: { 
+                viewportWidth, viewportHeight, loading,
+                loaded: { appData, appDataLoaded = appData }
+            }
+        } = this.props;
+
             return(
                 <div>
                   <Header />
-
-                  <Nav />
-                    
+                  <Nav products={this.state.products}/>
                   <Footer />
                 </div>
             )

@@ -35,6 +35,7 @@ export const TYPEs = {
     APP_DATA: 'appData',
     LOAD_APP_DATA: 'loadAppData',
     GET_VIEWPORT_SIZE: 'getViewportSize',
+    ERROR_MESSAGE: 'SERVER FAILED TO RESPONSE, PLEASE TRY AGAIN LATER...'
 }
 
 /*******************************************************************************
@@ -44,6 +45,7 @@ export const TYPEs = {
 export function getAppData(){
     return ( dispatch ) => {
         let type = TYPEs.APP_DATA;
+        let error = TYPEs.ERROR_MESSAGE;
 
         dispatch( ajax.loading( type ) );
 
@@ -51,12 +53,12 @@ export function getAppData(){
             url: '/react-starter-kit/mock/json/app-home.json',//FEEDS.APP,
             type: 'GET',
             success: ( results ) => {
-                if( !results.success ){
+                if( !results.recognitions ){
                     dispatch( ajax.loadingError( type, error ) )
                 }else{
                     dispatch({
                         type: TYPEs.LOAD_APP_DATA,
-                        results: results.data
+                        results: results.recognitions
                     })
 
                     dispatch( ajax.loaded( type ) )
@@ -125,8 +127,9 @@ export default ( state = appState, action ) => {
         case TYPEs.LOAD_APP_DATA:
     		 return{
     		 		...state,
-                activeUser: action.results,
-                data: action.results
+                activeUser: {},
+                data: action.results,
+                loaded: true
             }
 
         default:

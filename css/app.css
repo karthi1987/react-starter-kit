@@ -28,7 +28,8 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1; }
+  line-height: 1; background: #000;
+    color: #FFF; }
 
 ol, ul {
   list-style: none; }
