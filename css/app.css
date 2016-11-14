@@ -28,8 +28,10 @@ footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1; background: #000;
-    color: #FFF; }
+  line-height: 1;
+  background: url(/react-starter-kit/app-src/assets/img/background.png);
+  background-repeat: repeat-x;
+  color:#FFF; }
 
 ol, ul {
   list-style: none; }
@@ -50,3 +52,10 @@ a:hover,
 a:focus {
   text-decoration: none;
   outline: none; }
+
+.container {
+  width: 100%;
+  height: 90%;
+  background: #000;
+  color: #FFF; }
+

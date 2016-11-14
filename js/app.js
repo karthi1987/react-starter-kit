@@ -92,7 +92,7 @@
 	
 	var _navNav2 = _interopRequireDefault(_navNav);
 	
-	var _footerFooter = __webpack_require__(/*! ./footer/footer */ 228);
+	var _footerFooter = __webpack_require__(/*! ./footer/footer */ 229);
 	
 	var _footerFooter2 = _interopRequireDefault(_footerFooter);
 	
@@ -133,7 +133,6 @@
 	            products: [],
 	            dataLoaded: false
 	        };
-	        console.log("-OBJECT-", this.props, this.state);
 	    }
 	
 	    _createClass(_class, [{
@@ -33735,6 +33734,14 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 158);
 	
+	var _sharedTime = __webpack_require__(/*! ../shared/time */ 226);
+	
+	var _sharedTime2 = _interopRequireDefault(_sharedTime);
+	
+	var _sharedDate = __webpack_require__(/*! ../shared/date */ 234);
+	
+	var _sharedDate2 = _interopRequireDefault(_sharedDate);
+	
 	//scss
 	
 	__webpack_require__(/*! ./header.scss */ 221);
@@ -33827,7 +33834,7 @@
 								_react2['default'].createElement(
 									'span',
 									null,
-									'November 14'
+									_react2['default'].createElement(_sharedDate2['default'], { name: 'CityDate', UTCOffset: '6' })
 								)
 							),
 							_react2['default'].createElement(
@@ -33836,7 +33843,7 @@
 								_react2['default'].createElement(
 									'span',
 									null,
-									'12:37 pm'
+									_react2['default'].createElement(_sharedTime2['default'], { name: 'CityTime', UTCOffset: '6' })
 								)
 							)
 						)
@@ -33891,7 +33898,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".container {\n  width: 100%;\n  height: 90%;\n  border: 1px solid blue;\n  background: #000;\n  color: #FFF; }\n\n.header {\n  height: 140px;\n  border: 1px solid #333;\n  padding: 0 4%; }\n  .header .logo-and-icon, .header .date-and-time {\n    float: left;\n    width: 50%;\n    height: 140px; }\n  .header .logo-span {\n    display: block;\n    margin-top: 22%;\n    border-right: 1px solid #CCC; }\n  .header .date-and-time {\n    text-align: right; }\n  .header .logo {\n    width: 160px;\n    display: inline-block; }\n    .header .logo span {\n      display: block;\n      padding-left: 14%; }\n  .header .icon {\n    width: 200px;\n    display: inline-block; }\n  .header .date {\n    display: inline-block;\n    width: 35%; }\n    .header .date span {\n      display: block;\n      margin-top: 28%;\n      padding-right: 10%;\n      border-right: 1px solid #CCC; }\n  .header .time {\n    display: inline-block;\n    width: 25%; }\n    .header .time span {\n      display: block;\n      padding-left: 14%;\n      text-align: left; }\n", ""]);
+	exports.push([module.id, ".header {\n  height: 140px;\n  border: 1px solid #333;\n  padding: 0 4%;\n  background: #30353a; }\n  .header .logo-and-icon, .header .date-and-time {\n    float: left;\n    width: 50%;\n    height: 140px; }\n  .header .logo-span {\n    display: block;\n    margin-top: 22%;\n    border-right: 1px solid #CCC; }\n  .header .date-and-time {\n    text-align: right; }\n  .header .logo {\n    width: 160px;\n    display: inline-block; }\n    .header .logo span {\n      display: block;\n      padding-left: 14%; }\n  .header .icon {\n    width: 200px;\n    display: inline-block; }\n  .header .date {\n    display: inline-block;\n    width: 35%; }\n    .header .date span {\n      display: block;\n      margin-top: 28%;\n      padding-right: 10%;\n      border-right: 1px solid #CCC; }\n  .header .time {\n    display: inline-block;\n    width: 25%; }\n    .header .time span {\n      display: block;\n      padding-left: 14%;\n      text-align: left; }\n", ""]);
 	
 	// exports
 
@@ -34216,7 +34223,7 @@
 	
 	//scss
 	
-	__webpack_require__(/*! ./nav.scss */ 226);
+	__webpack_require__(/*! ./nav.scss */ 227);
 	
 	var Nav = (function (_React$Component) {
 		_inherits(Nav, _React$Component);
@@ -34255,7 +34262,6 @@
 			value: function componentWillReceiveProps(nextProps) {
 				var items = nextProps.products || [];
 				if (items.length) {
-					console.log("--- componentWillReceiveProps -- ", nextProps);
 					this.updateStateAsWhenNeeded(items[0]);
 					this.setState({ "products": items });
 				}
@@ -34277,7 +34283,6 @@
 	
 					}
 				});
-				console.log("Am i getting updated?", this.state);
 			}
 		}, {
 			key: 'updateLeftSlider',
@@ -34294,8 +34299,6 @@
 				var giver = _state.giver;
 				var receiver = _state.receiver;
 				var products = _state.products;
-	
-				console.log("--STATE NEW -- ", this.state);
 	
 				return _react2['default'].createElement(
 					'div',
@@ -34428,7 +34431,6 @@
 				var promotionName = _props$item.promotionName;
 				var promotionType = _props$item.promotionType;
 	
-				console.log("--Seincd utn", this.props);
 				return _react2['default'].createElement(
 					'li',
 					{ className: 'recognized-list', onSelect: this.props.updateSlides, onClick: this.props.updateSlides.bind(this, this.props.item) },
@@ -34487,7 +34489,7 @@
 						{ className: 'recognized-list-image' },
 						names && names.length > 1 ? _react2['default'].createElement(
 							'span',
-							null,
+							{ className: 'more-people' },
 							this.receiverImage()
 						) : _react2['default'].createElement('img', { src: this.receiverImage() })
 					),
@@ -34508,6 +34510,151 @@
 
 /***/ },
 /* 226 */
+/*!*************************************!*\
+  !*** ./app-src/app/shared/time.jsx ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	//scss
+	
+	__webpack_require__(/*! ./time.scss */ 232);
+	
+	var Time = (function (_React$Component) {
+	  _inherits(Time, _React$Component);
+	
+	  function Time(props) {
+	    _classCallCheck(this, Time);
+	
+	    _get(Object.getPrototypeOf(Time.prototype), 'constructor', this).call(this, props);
+	    this.state = {
+	      hours: null,
+	      minutes: null,
+	      seconds: null
+	    };
+	  }
+	
+	  _createClass(Time, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.setTime();
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.setInterval((function () {
+	        this.setTime();
+	      }).bind(this), 1000);
+	    }
+	  }, {
+	    key: 'setTime',
+	    value: function setTime() {
+	
+	      var currentdate = new Date();
+	      var hours = currentdate.getUTCHours() + parseInt(this.props.UTCOffset);
+	      var seconds = null;
+	
+	      // correct for number over 24, and negatives
+	      if (hours >= 24) {
+	        hours -= 24;
+	      }
+	      if (hours < 0) {
+	        hours += 12;
+	      }
+	
+	      // add leading zero, first convert hours to string
+	      hours = hours + "";
+	      if (hours.length == 1) {
+	        hours = "0" + hours;
+	      }
+	
+	      // minutes are the same on every time zone
+	      var minutes = currentdate.getUTCMinutes();
+	
+	      // add leading zero, first convert hours to string
+	      minutes = minutes + "";
+	      if (minutes.length == 1) {
+	        minutes = "0" + minutes;
+	      }
+	
+	      seconds = currentdate.getUTCSeconds();
+	
+	      //Set State to the modified time
+	      this.setState({
+	        hours: hours,
+	        minutes: minutes,
+	        seconds: seconds
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _state = this.state;
+	      var hours = _state.hours;
+	      var minutes = _state.minutes;
+	      var seconds = _state.seconds;
+	
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'local-time', ref: 'watchMe' },
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'city-hours' },
+	          hours
+	        ),
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'divider' },
+	          ':'
+	        ),
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'city-hours' },
+	          minutes
+	        ),
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'divider' },
+	          ':'
+	        ),
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'city-hours' },
+	          seconds
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Time;
+	})(_react2['default'].Component);
+	
+	exports['default'] = Time;
+	module.exports = exports['default'];
+
+/***/ },
+/* 227 */
 /*!**********************************!*\
   !*** ./app-src/app/nav/nav.scss ***!
   \**********************************/
@@ -34516,7 +34663,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./../../../~/sass-loader!./nav.scss */ 227);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./../../../~/sass-loader!./nav.scss */ 228);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 224)(content, {});
@@ -34536,7 +34683,7 @@
 	}
 
 /***/ },
-/* 227 */
+/* 228 */
 /*!***************************************************************************************************************************************!*\
   !*** ./~/css-loader!./~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./~/sass-loader!./app-src/app/nav/nav.scss ***!
   \***************************************************************************************************************************************/
@@ -34547,13 +34694,13 @@
 	
 	
 	// module
-	exports.push([module.id, ".content {\n  width: 100%; }\n  .content .content-left {\n    width: 70%;\n    padding: 0 0 0 4%;\n    float: left; }\n    .content .content-left .content-header {\n      width: 100%;\n      /*min-height: 20%;*/\n      min-height: 200px;\n      border-bottom: 1px solid #CCC; }\n      .content .content-left .content-header .recognitionby-image {\n        width: 10%;\n        float: left;\n        margin-top: 1.5%; }\n        .content .content-left .content-header .recognitionby-image img {\n          height: 15%; }\n      .content .content-left .content-header .recognitionby-username-tagline {\n        width: 50%;\n        float: left;\n        margin-top: 2%; }\n        .content .content-left .content-header .recognitionby-username-tagline .recognitionby-username {\n          font-size: 1em;\n          color: #f06424; }\n        .content .content-left .content-header .recognitionby-username-tagline .recognitionby-tagline {\n          font-size: 0.7em; }\n      .content .content-left .content-header .recognitionby-time {\n        float: right;\n        width: 20%;\n        margin-top: 8%;\n        text-align: right; }\n    .content .content-left .content-main {\n      clear: both;\n      /*min-height: 40%;*/\n      min-height: 500px;\n      border-bottom: 1px solid #CCC; }\n      .content .content-left .content-main .recogninized-text {\n        font-size: 2em;\n        text-align: left; }\n    .content .content-left .content-footer {\n      float: left;\n      width: 100%;\n      min-height: 25%; }\n      .content .content-left .content-footer .recognized-by {\n        float: right;\n        text-align: right;\n        width: 16%;\n        margin-top: 2%; }\n        .content .content-left .content-footer .recognized-by .recognized-sentby {\n          float: left;\n          padding-right: 4%; }\n          .content .content-left .content-footer .recognized-by .recognized-sentby span {\n            display: block;\n            color: #f06424; }\n        .content .content-left .content-footer .recognized-by .recognizedby-image {\n          float: left; }\n  .content .content-right {\n    width: 23%;\n    padding: 0 2% 0 0;\n    float: left; }\n    .content .content-right .recognized-items {\n      margin-top: 7%;\n      margin-left: 10%;\n      height: 700px;\n      overflow-y: auto; }\n      .content .content-right .recognized-items ul {\n        margin: 0;\n        padding: 0;\n        list-style: none; }\n        .content .content-right .recognized-items ul .recognized-list {\n          clear: both;\n          /*min-height: 12%;*/\n          min-height: 110px;\n          background: #484d52;\n          width: 100%;\n          margin-top: 4%;\n          border-radius: 1%; }\n          .content .content-right .recognized-items ul .recognized-list .recognized-list-info {\n            display: block;\n            color: #f06424; }\n            .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-image {\n              float: left;\n              margin: 4%; }\n              .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-image img {\n                height: 8%; }\n            .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-message {\n              float: left;\n              margin-top: 7%;\n              font-size: 0.7em; }\n", ""]);
+	exports.push([module.id, ".content {\n  width: 100%; }\n  .content .content-left {\n    width: 70%;\n    padding: 0 0 0 4%;\n    float: left; }\n    .content .content-left .content-header {\n      width: 100%;\n      /*min-height: 20%;*/\n      min-height: 200px;\n      border-bottom: 1px solid #CCC; }\n      .content .content-left .content-header .recognitionby-image {\n        width: 10%;\n        float: left;\n        margin-top: 1.5%; }\n        .content .content-left .content-header .recognitionby-image img {\n          height: 15%; }\n      .content .content-left .content-header .recognitionby-username-tagline {\n        width: 50%;\n        float: left;\n        margin-top: 2%; }\n        .content .content-left .content-header .recognitionby-username-tagline .recognitionby-username {\n          font-size: 1em;\n          color: #f06424; }\n        .content .content-left .content-header .recognitionby-username-tagline .recognitionby-tagline {\n          font-size: 0.7em; }\n      .content .content-left .content-header .recognitionby-time {\n        float: right;\n        width: 20%;\n        margin-top: 8%;\n        text-align: right; }\n    .content .content-left .content-main {\n      clear: both;\n      /*min-height: 40%;*/\n      min-height: 500px;\n      border-bottom: 1px solid #CCC; }\n      .content .content-left .content-main .recogninized-text {\n        font-size: 2em;\n        text-align: left; }\n    .content .content-left .content-footer {\n      float: left;\n      width: 100%;\n      min-height: 25%; }\n      .content .content-left .content-footer .recognized-by {\n        float: right;\n        text-align: right;\n        width: 16%;\n        margin-top: 2%; }\n        .content .content-left .content-footer .recognized-by .recognized-sentby {\n          float: left;\n          padding-right: 4%; }\n          .content .content-left .content-footer .recognized-by .recognized-sentby span {\n            display: block;\n            color: #f06424; }\n        .content .content-left .content-footer .recognized-by .recognizedby-image {\n          float: left; }\n  .content .content-right {\n    width: 23%;\n    padding: 0 2% 0 0;\n    float: left; }\n    .content .content-right .recognized-items {\n      margin-top: 7%;\n      margin-left: 10%;\n      height: 700px;\n      overflow-y: auto; }\n      .content .content-right .recognized-items ul {\n        margin: 0;\n        padding: 0;\n        list-style: none; }\n        .content .content-right .recognized-items ul .recognized-list {\n          clear: both;\n          /*min-height: 12%;*/\n          min-height: 110px;\n          background: #484d52;\n          width: 100%;\n          margin-top: 4%;\n          border-radius: 1%; }\n          .content .content-right .recognized-items ul .recognized-list .recognized-list-info {\n            display: block;\n            color: #f06424; }\n            .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-image {\n              float: left;\n              margin: 4%; }\n              .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-image img {\n                height: 8%; }\n              .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-image .more-people {\n                display: inline-block;\n                min-height: 8%;\n                width: 80px;\n                background: #CCC;\n                height: 80px;\n                border-radius: 50%; }\n            .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-message {\n              float: left;\n              margin-top: 7%;\n              font-size: 0.7em;\n              display: table;\n              min-height: 80px; }\n              .content .content-right .recognized-items ul .recognized-list .recognized-list-info .recognized-list-message span {\n                display: table-cell;\n                vertical-align: middle; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 228 */
+/* 229 */
 /*!***************************************!*\
   !*** ./app-src/app/footer/footer.jsx ***!
   \***************************************/
@@ -34580,7 +34727,7 @@
 	
 	//scss
 	
-	__webpack_require__(/*! ./footer.scss */ 229);
+	__webpack_require__(/*! ./footer.scss */ 230);
 	
 	var Footer = (function (_React$Component) {
 	    _inherits(Footer, _React$Component);
@@ -34608,7 +34755,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 229 */
+/* 230 */
 /*!****************************************!*\
   !*** ./app-src/app/footer/footer.scss ***!
   \****************************************/
@@ -34617,7 +34764,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./../../../~/sass-loader!./footer.scss */ 230);
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./../../../~/sass-loader!./footer.scss */ 231);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 224)(content, {});
@@ -34637,7 +34784,7 @@
 	}
 
 /***/ },
-/* 230 */
+/* 231 */
 /*!*********************************************************************************************************************************************!*\
   !*** ./~/css-loader!./~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./~/sass-loader!./app-src/app/footer/footer.scss ***!
   \*********************************************************************************************************************************************/
@@ -34652,6 +34799,157 @@
 	
 	// exports
 
+
+/***/ },
+/* 232 */
+/*!**************************************!*\
+  !*** ./app-src/app/shared/time.scss ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(/*! !./../../../~/css-loader!./../../../~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./../../../~/sass-loader!./time.scss */ 233);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(/*! ./../../../~/style-loader/addStyles.js */ 224)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?{browsers:[\"last 2 version\", \"Explorer > 8\"]}!./../../../node_modules/sass-loader/index.js!./time.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js?{browsers:[\"last 2 version\", \"Explorer > 8\"]}!./../../../node_modules/sass-loader/index.js!./time.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 233 */
+/*!*******************************************************************************************************************************************!*\
+  !*** ./~/css-loader!./~/autoprefixer-loader?{browsers:["last 2 version", "Explorer > 8"]}!./~/sass-loader!./app-src/app/shared/time.scss ***!
+  \*******************************************************************************************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(/*! ./../../../~/css-loader/lib/css-base.js */ 223)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".local-time {\n  display: inline-block;\n  padding: 0 !important; }\n  .local-time .city-hours {\n    width: 20px;\n    display: inline-block !important;\n    padding: 0 !important;\n    border-right: 0 !important; }\n  .local-time .divider {\n    width: 10px;\n    display: inline-block !important;\n    padding: 0 !important; }\n  .local-time .city-month {\n    width: 100px;\n    display: inline-block !important;\n    padding: 0 !important;\n    border-right: 0 !important; }\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 234 */
+/*!*************************************!*\
+  !*** ./app-src/app/shared/date.jsx ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(/*! react-dom */ 158);
+	
+	//scss
+	
+	__webpack_require__(/*! ./time.scss */ 232);
+	
+	var DateToday = (function (_React$Component) {
+	  _inherits(DateToday, _React$Component);
+	
+	  function DateToday(props) {
+	    _classCallCheck(this, DateToday);
+	
+	    _get(Object.getPrototypeOf(DateToday.prototype), 'constructor', this).call(this, props);
+	    this.state = {
+	      date: null,
+	      month: null
+	    };
+	  }
+	
+	  _createClass(DateToday, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.setDate();
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.setTimeout((function () {
+	        this.setDate();
+	      }).bind(this), 100);
+	    }
+	  }, {
+	    key: 'setDate',
+	    value: function setDate() {
+	
+	      var currentdate = new Date();
+	      var date = currentdate.getDate();
+	      var month = null;
+	      var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	
+	      month = monthNames[currentdate.getMonth()];
+	
+	      //Set State to the modified time
+	      this.setState({
+	        date: date,
+	        month: month
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _state = this.state;
+	      var date = _state.date;
+	      var month = _state.month;
+	
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'local-time', ref: 'watchMyDate' },
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'city-month' },
+	          month
+	        ),
+	        _react2['default'].createElement(
+	          'span',
+	          { className: 'city-hours' },
+	          date
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return DateToday;
+	})(_react2['default'].Component);
+	
+	exports['default'] = DateToday;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

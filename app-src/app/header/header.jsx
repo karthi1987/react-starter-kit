@@ -1,6 +1,10 @@
 //libs and utilities
 import React from 'react';
 import { render } from 'react-dom';
+import Time from '../shared/time';
+import DateTime from '../shared/date';
+
+
 //scss
 import './header.scss';
 
@@ -50,10 +54,14 @@ class HeaderComponent extends React.Component{
 					</div>
 					<div className="date-and-time">
 						<div className="date">
-							<span>November 14</span>
+							<span>
+								<DateTime name="CityDate" UTCOffset="6" />
+							</span>
 						</div>
 						<div className="time">
-							<span>12:37 pm</span>
+							<span>
+								<Time name="CityTime" UTCOffset="6" />
+							</span>
 						</div>
 					</div>
 				</div>

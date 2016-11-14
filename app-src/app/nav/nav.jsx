@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+
 //scss
 import './nav.scss';
 
@@ -177,7 +178,7 @@ class RecoginitionName extends React.Component {
 	        	{
 	        		names && names.length > 1
 	        		?
-	        		<span>{this.receiverImage()}</span>
+	        		<span className="more-people">{this.receiverImage()}</span>
 	        		:
 					<img src={this.receiverImage()} />
 	        	}
