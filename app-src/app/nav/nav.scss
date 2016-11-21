@@ -15,6 +15,7 @@
 			border-bottom:1px solid #CCC;
 
 			.recognitionby-image {
+				position: relative;
 				width:10%;
 				float:left;
 				margin-top: 1.5%;
@@ -23,18 +24,22 @@
 				}
 			}
 			.recognitionby-username-tagline {
+				position: relative;
 				width:50%;
 				float:left;
 				margin-top: 2%;
 				.recognitionby-username {
+					position: absolute;
 					font-size: 1em;
 					color: #f06424;
 				}
 				.recognitionby-tagline {
+					position: absolute;
 					font-size: 0.7em;
 				}
 			}
 			.recognitionby-time {
+				position: relative;
 				float:right;
 				width:20%;
 				margin-top: 8%;
@@ -99,7 +104,7 @@
 					min-height: 110px;
 					background: #484d52;
 					width:100%;
-					margin-top: 4%;
+					margin-bottom: 4%;
 					border-radius: 1%;
 					.recognized-list-info {
 						display: block;

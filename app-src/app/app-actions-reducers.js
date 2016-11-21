@@ -51,7 +51,11 @@ export function getAppData(){
 
         Ajax({
             url: '/react-starter-kit/mock/json/app-home.json',//FEEDS.APP,
+            //url: 'https://g5alphapprd.performnet.com/g5alpha/ws/publicrecognitionwall/1/publicRecognitionWall.biws',
             type: 'GET',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("API-Gateway-Key", "bCcGOBsHhlFTkI3mYQkmzMZhAzvvwd146pBX6oAk8ts");
+            },
             success: ( results ) => {
                 if( !results.recognitions ){
                     dispatch( ajax.loadingError( type, error ) )

@@ -1,4 +1,5 @@
 //this file handles webpack for /app-src and /mock/home
+require('es6-promise').polyfill();
 
 var webpack = require('webpack');
 var path = require('path');
