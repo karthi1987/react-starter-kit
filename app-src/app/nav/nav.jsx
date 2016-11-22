@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Slider from 'react-slick';
+import $ from 'jquery';
 
 //scss
 import './nav.scss';
@@ -381,6 +382,10 @@ class RecoginitionName extends React.Component {
  */
 
 class ReactSlickDemo extends React.Component{
+	highlightActiveItem(currentSlide){
+		$(".recognized-items .slick-track").find(".recognized-list").removeClass("selected");
+		$(".recognized-items .slick-track .recognized-list").eq(currentSlide).addClass("selected");
+	}
    render(){
 
 	let {products, updateLeftSlider} = this.props;
@@ -394,12 +399,12 @@ class ReactSlickDemo extends React.Component{
 		slidesToShow: 6,
 		slidesToScroll: 1,
 		vertical: true,
-		/* verticalSwiping: true,*/
 		autoplay: true,
 		speed: 1000,
 		autoplaySpeed: 4000,
 		beforeChange: function (currentSlide, nextSlide) {
 			//console.log('before change', currentSlide, nextSlide);
+			self.highlightActiveItem(nextSlide);
 		},
 		afterChange: function (currentSlide) {
 			//console.log('after change', currentSlide, products[currentSlide]);

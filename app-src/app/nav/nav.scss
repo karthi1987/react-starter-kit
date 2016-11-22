@@ -136,7 +136,12 @@
 						    }
 						}
 					}
-
+				}
+				li.selected {
+					background: #f06424;
+					a {
+						color: #FFF;
+					}
 				}
 
 			}
