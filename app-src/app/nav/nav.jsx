@@ -29,12 +29,13 @@ class Nav extends React.Component{
     componentWillReceiveProps(nextProps) {
     	let items = nextProps.products || [];
     	if ( items.length ) {
-			this.updateStateAsWhenNeeded(items[0]);
-			this.setState({"products": items});
+			this.updateStateAsWhenNeeded(items[0], items);
+			//this.setState({"products": items});
     	}
     }
 
-    updateStateAsWhenNeeded(item) {
+    updateStateAsWhenNeeded(item, products) {
+    	//console.log("update item", item, " products ", products);
     	this.setState(
 			{
 				"giver": {
@@ -47,16 +48,14 @@ class Nav extends React.Component{
 					"tagline": null,
 					"time": item.recognitionDate,
 					"message": item.comments
-
-				}
+				},
+				"products": products
 			}
 		);
     }
 
-    updateLeftSlider(props, event) {
-    	//debugger;
-    	//event.preventDefault();
-    	this.updateStateAsWhenNeeded(props);
+    updateLeftSlider(props, products) {
+    	this.updateStateAsWhenNeeded(props, products);
     }
 
    render() {
@@ -67,9 +66,11 @@ class Nav extends React.Component{
 
     		<div className="content">
 				<div className="content-left">
-    				<RecognitionHeader item={this.state} />
-    				<RecognitionHeartContent item={this.state} />
-    				<RecognitionFooter item={this.state} />
+    				<RecognitionHeader item={this.state.receiver} />
+
+    				<RecognitionHeartContent item={this.state.receiver} />
+    				
+    				<RecognitionFooter item={this.state.giver} />
     			</div>
     			<div className="content-right">
     				<div className="recognized-items">
@@ -98,9 +99,8 @@ class Nav extends React.Component{
 class RecognitionHeader extends React.Component{
 	constructor( props ){
         super( props );
-
         this.state = {
-        	avatar: null,
+        	avatar: props.avatar || null,
         	header: {
 				image: {
 					'transform': "translate3d(0, "+ ( 250 ) +"px,  0 )",
@@ -121,12 +121,11 @@ class RecognitionHeader extends React.Component{
     }
 
     componentWillReceiveProps(nextState, nextProps) {
-    	//console.log("nextState", nextState.item.products);
-    	if ( nextState.item.products && nextState.item.products.length ){
+    	if ( nextState.item.name ){
     		setTimeout(
 			() => {
 			    this.setState({
-			       "avatar":nextState.item.products[0].comments,
+			       "avatar":nextState.item.avatar,
 			       "header" : {
 			       		"image" : {
 							'transformStyle': 'preserve-3d',
@@ -141,29 +140,34 @@ class RecognitionHeader extends React.Component{
     	}
     }
 
-	componentDidMount() {
-		
-
-	}
     render(){
-    	let {receiver} = this.props.item;
+    	let {avatar, name, tagline, time} = this.props.item;
+
         return(
 
 			<div className="content-header">
-				<div className="recognitionby-image" style={this.state.header.image}>
-					<img src={receiver.avatar} />
+			{
+				this.props.item 
+				?
+				<div>
+					<div className="recognitionby-image" style={this.state.header.image}>
+						<img src={avatar} />
+					</div>
+					<div className="recognitionby-username-tagline">
+						<p className="recognitionby-username" style={this.state.header.image}>
+							{name}
+						</p>
+						<p className="recognitionby-tagline" style={this.state.header.tagline}>
+							{tagline}
+						</p>
+					</div>
+					<div className="recognitionby-time" ref="time">
+						<p style={this.state.header.image}> {time} </p>
+					</div>
 				</div>
-				<div className="recognitionby-username-tagline">
-					<p className="recognitionby-username" style={this.state.header.image}>
-						{receiver.name}
-					</p>
-					<p className="recognitionby-tagline" style={this.state.header.tagline}>
-						{receiver.tagline}
-					</p>
-				</div>
-				<div className="recognitionby-time" ref="time">
-					<p style={this.state.header.image}> {receiver.time} </p>
-				</div>
+				:
+				<span>No Results</span>
+			}
 			</div>
 
         )
@@ -183,7 +187,7 @@ class RecognitionHeartContent extends React.Component{
         super( props );
 
         this.state = {
-        	avatar: null,
+        	avatar: props.avatar || null,
         	recogninized: {
 				'transform': "translate3d(0, "+ ( 550 ) +"px,  0 )",
         	}
@@ -192,11 +196,11 @@ class RecognitionHeartContent extends React.Component{
 
     componentWillReceiveProps(nextState, nextProps) {
     	//console.log("nextState", nextState.item.products);
-    	if ( nextState.item.products && nextState.item.products.length ){
+    	if ( nextState.item && nextState.item.name ){
     		setTimeout(
 			() => {
 			    this.setState({
-			       "avatar":nextState.item.products[0].comments,
+			       "avatar":nextState.item.avatar,
 			       "recogninized" : {
 						'transformStyle': 'preserve-3d',
 						'transition': 'all 2s ease-in-out',
@@ -210,13 +214,20 @@ class RecognitionHeartContent extends React.Component{
     }
 
     render(){
-    	let {receiver} = this.props.item;
+    	let {message} = this.props.item;
         return(
 
 			<div className="content-main">
-				<p className="recogninized-text" style={this.state.recogninized}>
-					{receiver.message}
-				</p>
+				{
+					this.props.item
+					?
+					<p className="recogninized-text" style={this.state.recogninized}>
+						{message}
+					</p>
+					:
+					<span>No Results</span>
+				}
+				
 			</div>
 
         )
@@ -236,7 +247,7 @@ class RecognitionFooter extends React.Component {
         super( props );
 
         this.state = {
-        	avatar: null,
+        	avatar: props.avatar || null,
         	giver: {
 				'transform': "translate3d(0, "+ ( 350 ) +"px,  0 )",
         	}
@@ -245,11 +256,11 @@ class RecognitionFooter extends React.Component {
 
     componentWillReceiveProps(nextState, nextProps) {
     	//console.log("nextState", nextState.item.products);
-    	if ( nextState.item.products && nextState.item.products.length ){
+    	if ( nextState.item && nextState.item.name ){
     		setTimeout(
 			() => {
 			    this.setState({
-			       "avatar":nextState.item.products[0].comments,
+			       "avatar":nextState.item.avatar,
 			       "giver" : {
 						'transformStyle': 'preserve-3d',
 						'transition': 'all 2s ease-in-out',
@@ -263,20 +274,27 @@ class RecognitionFooter extends React.Component {
     }
 
     render(){
-    	let {giver} = this.props.item;
+    	let {name, avatar} = this.props.item;
         return(
 
 			<div className="content-footer">
-				<div className="recognized-by" style={this.state.giver}>
-					<div className="recognized-sentby">
-						<p> sent by
-							<span> {giver.name}</span>
-						</p>
+				{
+					this.props.item 
+					?
+					<div className="recognized-by" style={this.state.giver}>
+						<div className="recognized-sentby">
+							<p> sent by
+								<span> {name}</span>
+							</p>
+						</div>
+						<div className="recognizedby-image">
+							<img src={avatar} />
+						</div>
 					</div>
-					<div className="recognizedby-image">
-						<img src={giver.avatar} />
-					</div>
-				</div>
+					:
+					null
+				}
+				
 			</div>
 
         )
@@ -367,28 +385,26 @@ class ReactSlickDemo extends React.Component{
 
 	let {products, updateLeftSlider} = this.props;
 
-	console.log("-this.products-", this.props);
-
 	let self = this;
 	let interval = "";
 
-	let settings = {
+    const settings = {
 		dots: false,
-		arrows: false,
 		infinite: true,
-		vertical: true,
-		speed: 1500,
 		slidesToShow: 6,
 		slidesToScroll: 1,
+		vertical: true,
+		/* verticalSwiping: true,*/
 		autoplay: true,
-		//autoplaySpeed: ( interval ? Number( interval ) * 1000 : 10000 ),
+		speed: 1000,
+		autoplaySpeed: 4000,
 		beforeChange: function (currentSlide, nextSlide) {
-			console.log('before change', currentSlide, nextSlide);
+			//console.log('before change', currentSlide, nextSlide);
 		},
 		afterChange: function (currentSlide) {
-			console.log('after change', currentSlide);
-			updateLeftSlider(products[currentSlide]);
-		}    
+			//console.log('after change', currentSlide, products[currentSlide]);
+			updateLeftSlider(products[currentSlide], products);
+		}
     };
 
       return (
@@ -399,31 +415,30 @@ class ReactSlickDemo extends React.Component{
 			    "height": "700px"
 			}
 		}>
-
+		<ul>
 		{
 			products && products.length > 0
 			?
 			 <Slider {...settings}>
- 				<ul>
-				{
-				 products.map(
-				     ( item, index ) =>
-			          <li className="recognized-list" data-index={index} key={index}>
-			          	<a href="#" className="recognized-list-info" >
-						     {
-						         item.recievers && item.recievers.length 
-						         && 
-						         <RecoginitionName names={item.recievers} />
-						     }
-						</a>
-			          </li>
-					)
-				} 
-				</ul>      
+	         { 
+	         	products.map(
+     				     ( item, index ) =>
+     			          <li className="recognized-list" data-index={index} key={index}>
+     			          	<a href="#" className="recognized-list-info" >
+     						     {
+     						         item.recievers && item.recievers.length 
+     						         && 
+     						         <RecoginitionName names={item.recievers} />
+     						     }
+     						</a>
+     			          </li>
+     					)
+	         }
 			</Slider>
 			:
 			null
 		}
+		</ul>
         </div>
     )
    }
